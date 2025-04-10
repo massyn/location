@@ -28,7 +28,7 @@ def read_database(path):
                         'admin2'    : data.get('admin2'   ,safe_get(hierarchy, 4)),
                         'city'      : data.get('city'     ,safe_get(hierarchy, 5)),
                         'suburb'    : data.get('suburb'   ,safe_get(hierarchy, 6)),
-                        'lattitude' : data.get('lattitude', ''),
+                        'latitude'  : data.get('latitude', ''),
                         'longitude' : data.get('longitude', ''),
                         'postcode'  : data.get('postcode', '')
                     })
