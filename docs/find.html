@@ -69,9 +69,7 @@
                 let minDistance = Infinity;
 
                 data.forEach(entry => {
-                    console.log(`Checking entry: ${entry.latitude}, ${entry.longitude}`);
                     const distance = getDistance(userLat, userLon, entry.latitude, entry.longitude);
-                    console.log(`Distance to entry: ${distance} km`);
                     if (distance < minDistance) {
                         minDistance = distance;
                         closestEntry = entry;

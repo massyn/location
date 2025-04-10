@@ -11,3 +11,7 @@ data = requests.get('https://location-db.pages.dev/data.json').json()
 ## How to use the data
 
 When linking the data with your own data set, join the data on the `id` column.  This column should not change.
+
+## Testing it
+
+Where are you?  [Click here](find.html) to run a simple process in your browser to find your closest location.
