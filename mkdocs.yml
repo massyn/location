@@ -8,4 +8,5 @@ theme:
 nav:
   - Home: index.md
   - Using the API: api.md
+  - Find me: findme.md
   - Contribute: contribute.md

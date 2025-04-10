@@ -39,3 +39,8 @@ The folder structure is defines as
 ## Submit a pull request
 
 Submit a [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) to submit your contribution to the main repo.
+
+## Things to keep in mind
+
+* `id` must be unique for every location.
+* `id` must never change.  Once it is allocated, it stays with the location forever.  Some locations may go through a name change.  That's fine - change the name, move the `yaml` file to a different region if it makes sense, just do not change the id, because we want to allow applications to still find the location, even when the actual name changes.

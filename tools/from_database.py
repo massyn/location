@@ -68,9 +68,8 @@ if __name__ == '__main__':
     URL = 'https://location-db.pages.dev'
 
     with open('../docs/index.md','at',encoding='utf-8') as md:
-        md.write('## Data links\n\n')
 
-        md.write(f"> Total of {len(data)} records found\n\n")
+        md.write(f"> Total of {len(data)} records in the data set.\n\n")
 
         with open('../docs/data.json','wt',encoding='utf-8') as q:
             q.write(json.dumps(data))
