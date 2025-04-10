@@ -16,8 +16,8 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      # - name: Add a date
-      #   run: echo "Updated on $(date)" >> docs/about.md
+      - name: Generate data files
+        run: cd tools && python from_database.py
 
       - name: Build the site
         run: mkdocs build -f mkdocs.yml -d dist -c --no-directory-urls
