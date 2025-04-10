@@ -38,10 +38,10 @@ def read_database(path):
 if __name__ == '__main__':
     data = read_database('../database')
 
-    with open('docs/data.json','wt',encoding='utf-8') as q:
+    with open('../docs/data.json','wt',encoding='utf-8') as q:
         q.write(json.dumps(data))
 
-    with open('docs/data.jsonl','wt',encoding='utf-8') as q:
+    with open('../docs/data.jsonl','wt',encoding='utf-8') as q:
         for i in data:
             q.write(json.dumps(i))
             q.write('\n')
