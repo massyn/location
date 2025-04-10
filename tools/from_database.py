@@ -33,15 +33,17 @@ def get_human_readable_size(size_in_bytes):
         return f"{size_in_bytes / 1024**3:.2f} GB"
         
 def read_database(path):
+    errors = []
     # == traverse throught the database, and get all the yaml files
     # == Create the data schema for the record
     output = []
+    ids = {}
     for r, d, f in os.walk(path):
         for f2 in f:
             file = os.path.join(r, f2).replace('\\','/')[len(path)+1:]
             if file.endswith('.yaml'):
                 hierarchy = file.split('.')[0].split('/')
-                print(f"Reading {file}...")
+                #print(f"Reading {file}...")
                 with open(f"{path}/{file}",'rt',encoding='utf-8') as y:
                     data = yaml.safe_load(y)
                     if 'id' in data:
@@ -58,9 +60,24 @@ def read_database(path):
                             'longitude' : data.get('longitude', ''),
                             'postcode'  : data.get('postcode', '')
                         })
-                    else:
-                        print(f"ERROR : {file} is missing id")
 
+                        # == check if the ids are unique
+                        if data['id'] in ids:
+                            errors.append(f"Duplicate id detected - {file} is using an id from {ids[data['id']]}")
+                        else:
+                            ids[data['id']] = file
+
+                    else:
+                        errors.append(f"Missing id - {file}")
+
+    if len(errors) == 0:
+        print(f"id validation passed for {len(output)} records")
+    else:
+        for i in errors:
+            print(f"ERROR : {i}")
+        print("")
+        print("** Fix these errors first before you continue **")
+        exit(1)
     return output
 
 if __name__ == '__main__':
