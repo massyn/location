@@ -37,11 +37,19 @@ def read_database(path):
 
 if __name__ == '__main__':
     data = read_database('../database')
+    URL = 'https://location-db.pages.dev'
 
-    with open('../docs/data.json','wt',encoding='utf-8') as q:
-        q.write(json.dumps(data))
+    with open('../docs/index.md','at',encoding='utf-8') as md:
+        md.write('## Data links\n\n')
 
-    with open('../docs/data.jsonl','wt',encoding='utf-8') as q:
-        for i in data:
-            q.write(json.dumps(i))
-            q.write('\n')
+        md.write(f"> Total of {len(data)} records found\n")
+
+        md.write(f"* `json` - [{URL}/data.json]({URL}/data.json)\n")
+        with open('../docs/data.json','wt',encoding='utf-8') as q:
+            q.write(json.dumps(data))
+
+        md.write(f"* `jsonl` - [{URL}/data.json]({URL}/data.jsonl)\n")
+        with open('../docs/data.jsonl','wt',encoding='utf-8') as q:
+            for i in data:
+                q.write(json.dumps(i))
+                q.write('\n')
