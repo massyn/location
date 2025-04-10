@@ -21,13 +21,13 @@ def read_database(path):
                 with open(f"{path}/{file}",'rt',encoding='utf-8') as y:
                     data = yaml.safe_load(y)
                     output.append({
-                        'continent' : safe_get(hierarchy, 0),
-                        'region'    : safe_get(hierarchy, 1),
-                        'country'   : safe_get(hierarchy, 2),
-                        'admin1'    : safe_get(hierarchy, 3),
-                        'admin2'    : safe_get(hierarchy, 4),
-                        'city'      : safe_get(hierarchy, 5),
-                        'suburb'    : safe_get(hierarchy, 6),
+                        'continent' : data.get('continent',safe_get(hierarchy, 0)),
+                        'region'    : data.get('region'   ,safe_get(hierarchy, 1)),
+                        'country'   : data.get('country'  ,safe_get(hierarchy, 2)),
+                        'admin1'    : data.get('admin1'   ,safe_get(hierarchy, 3)),
+                        'admin2'    : data.get('admin2'   ,safe_get(hierarchy, 4)),
+                        'city'      : data.get('city'     ,safe_get(hierarchy, 5)),
+                        'suburb'    : data.get('suburb'   ,safe_get(hierarchy, 6)),
                         'lattitude' : data.get('lattitude', ''),
                         'longitude' : data.get('longitude', ''),
                         'postcode'  : data.get('postcode', '')
@@ -42,6 +42,6 @@ if __name__ == '__main__':
         q.write(json.dumps(data))
 
     with open('docs/data.jsonl','wt',encoding='utf-8') as q:
-    for i in data:
-        q.write(json.dumps(i))
-        q.write('\n')
+        for i in data:
+            q.write(json.dumps(i))
+            q.write('\n')
