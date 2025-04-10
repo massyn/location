@@ -1,6 +1,20 @@
 import os
 import yaml
 import json
+import csv
+
+def writeCSV(file,data):
+    os.makedirs(os.path.dirname(file),exist_ok = True)
+    headers = list(data[0])
+    with open(file, 'wt', newline='') as csvfile:
+        csvwriter = csv.writer(csvfile)
+        csvwriter.writerow(headers)
+
+        for x in data:
+            row = []
+            for h in headers:
+                row.append(x.get(h))
+            csvwriter.writerow(row)
 
 def safe_get(lst, index, default=''):
     try:
@@ -42,14 +56,17 @@ if __name__ == '__main__':
     with open('../docs/index.md','at',encoding='utf-8') as md:
         md.write('## Data links\n\n')
 
-        md.write(f"> Total of {len(data)} records found\n")
+        md.write(f"> Total of {len(data)} records found\n\n")
 
         md.write(f"* `json` - [{URL}/data.json]({URL}/data.json)\n")
         with open('../docs/data.json','wt',encoding='utf-8') as q:
             q.write(json.dumps(data))
 
-        md.write(f"* `jsonl` - [{URL}/data.json]({URL}/data.jsonl)\n")
+        md.write(f"* `jsonl` - [{URL}/data.jsonl]({URL}/data.jsonl)\n")
         with open('../docs/data.jsonl','wt',encoding='utf-8') as q:
             for i in data:
                 q.write(json.dumps(i))
                 q.write('\n')
+
+        md.write(f"* `csv` - [{URL}/data.csv]({URL}/data.csv)\n")
+        writeCSV('../docs/data.csv',data)
