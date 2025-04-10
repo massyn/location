@@ -10,30 +10,9 @@ The APIs are basic files sitting on a URL.  There is nothing special, other than
 
 ## How to contribute
 
-The database is all in [Github](https://github.com/massyn/location).  Like all github projects, you're invited to make updates, and submit a pull request to have your updates applied.  Refer to the [contribute.md](contribute) page for more information.
+The database is all in [Github](https://github.com/massyn/location).  Like all github projects, you're invited to make updates, and submit a pull request to have your updates applied.  Refer to the [contribute](contribute.md) page for more information.
 
 ## Data files
 
 The data files are produced in a number of different formats.  Pick the one that matches your requirements the closest.
 
-> Total of 217 records in the data set.
-
-| Format  | Link | Size |
-|---------|------|------|
-| `json`  | [https://location-db.pages.dev/data.json](https://location-db.pages.dev/data.json)   | 62.58 KB  |
-| `jsonl` | [https://location-db.pages.dev/data.jsonl](https://location-db.pages.dev/data.jsonl) | 62.58 KB |
-| `csv`   | [https://location-db.pages.dev/data.csv](https://location-db.pages.dev/data.csv)     | 62.58 KB  |
-> Total of 217 records in the data set.
-
-| Format  | Link | Size |
-|---------|------|------|
-| `json`  | [https://location-db.pages.dev/data.json](https://location-db.pages.dev/data.json)   | 62.58 KB  |
-| `jsonl` | [https://location-db.pages.dev/data.jsonl](https://location-db.pages.dev/data.jsonl) | 62.58 KB |
-| `csv`   | [https://location-db.pages.dev/data.csv](https://location-db.pages.dev/data.csv)     | 62.58 KB  |
-> Total of 217 records in the data set.
-
-| Format  | Link | Size |
-|---------|------|------|
-| `json`  | [https://location-db.pages.dev/data.json](https://location-db.pages.dev/data.json)   | 62.58 KB  |
-| `jsonl` | [https://location-db.pages.dev/data.jsonl](https://location-db.pages.dev/data.jsonl) | 62.58 KB |
-| `csv`   | [https://location-db.pages.dev/data.csv](https://location-db.pages.dev/data.csv)     | 62.58 KB  |
