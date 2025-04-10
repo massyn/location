@@ -83,6 +83,6 @@ if __name__ == '__main__':
 
         md.write(f"| Format  | Link | Size |\n")
         md.write(f"|---------|------|------|\n")
-        md.write(f"| `json`  | [{URL}/data.json]({URL}/data.json)  | {get_human_readable_size(os.path.getsize('../docs/data.json'))}  |\n")
-        md.write(f"* `jsonl` | [{URL}/data.json]({URL}/data.jsonl) | {get_human_readable_size(os.path.getsize('../docs/data.jsonl'))} |\n")
-        md.write(f"* `csv`   | [{URL}/data.json]({URL}/data.json)  | {get_human_readable_size(os.path.getsize('../docs/data.json'))}  |\n")
+        md.write(f"| `json`  | [{URL}/data.json]({URL}/data.json)   | {get_human_readable_size(os.path.getsize('../docs/data.json'))}  |\n")
+        md.write(f"| `jsonl` | [{URL}/data.jsonl]({URL}/data.jsonl) | {get_human_readable_size(os.path.getsize('../docs/data.jsonl'))} |\n")
+        md.write(f"| `csv`   | [{URL}/data.csv]({URL}/data.csv)     | {get_human_readable_size(os.path.getsize('../docs/data.json'))}  |\n")
