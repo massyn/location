@@ -6,8 +6,13 @@ The data is free and open to anyone.  It may not be fully accurate, and that's w
 
 ## How to use the API
 
-The APIs are basic files sitting on a URL.  There is nothing special, other than just download the file, and load it in your data set.  For more information, refer to the [api](api.md) section.
+The database is presented in a number of formats.  The simplest way is to simply read the `json` file and use it in your application.
 
+```python
+import requests
+
+data = requests.get('https://location-db.pages.dev/data.json').json()
+```
 ## How to contribute
 
 The database is all in [Github](https://github.com/massyn/location).  Like all github projects, you're invited to make updates, and submit a pull request to have your updates applied.  Refer to the [contribute](contribute.md) page for more information.
