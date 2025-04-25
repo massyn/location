@@ -6,14 +6,6 @@ The data is free and open to anyone.  It may not be fully accurate, and that's w
 
 ## How to use the API
 
-The database is presented in a number of formats.  The simplest way is to simply read the `json` file and use it in your application.
-
-```python
-import requests
-
-data = requests.get('https://location-db.pages.dev/data.json').json()
-```
-
 You can use the [location](https://github.com/massyn/location/blob/main/tools/location.py) Python class as a wrapper to retrieve the data.  When the data set becomes too large, this class will handle pagination and any updates to the API call.
 
 ## How to contribute

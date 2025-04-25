@@ -9,7 +9,7 @@ class locationdb:
         req = requests.get(f"{self.endpoint}/data.json",timeout=30)
         req.raise_for_status()
         if req.status_code == 200:
-            return req.json()
+            return req.json()['data']
         else:
             return []
         
