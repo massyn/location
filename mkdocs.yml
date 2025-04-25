@@ -9,3 +9,4 @@ nav:
   - Home: index.md
   - Find me: findme.md
   - Contribute: contribute.md
+  - API: api.md
