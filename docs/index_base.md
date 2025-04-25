@@ -13,6 +13,9 @@ import requests
 
 data = requests.get('https://location-db.pages.dev/data.json').json()
 ```
+
+You can use the [location](https://github.com/massyn/location/blob/main/tools/location.py) Python class as a wrapper to retrieve the data.  When the data set becomes too large, this class will handle pagination and any updates to the API call.
+
 ## How to contribute
 
 The database is all in [Github](https://github.com/massyn/location).  Like all github projects, you're invited to make updates, and submit a pull request to have your updates applied.  Refer to the [contribute](contribute.md) page for more information.
@@ -20,4 +23,3 @@ The database is all in [Github](https://github.com/massyn/location).  Like all g
 ## Data files
 
 The data files are produced in a number of different formats.  Pick the one that matches your requirements the closest.
-

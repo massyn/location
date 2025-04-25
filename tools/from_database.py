@@ -84,21 +84,24 @@ if __name__ == '__main__':
     data = read_database('../database')
     URL = 'https://location-db.pages.dev'
 
-    with open('../docs/index.md','at',encoding='utf-8') as md:
+    with open('../docs/index_base.md','rt',encoding='utf-8') as orig:
+        with open('../docs/index.md','wt',encoding='utf-8') as md:
+            for l in orig.readlines():
+                md.write(f"{l}")
 
-        md.write(f"> Total of {len(data)} records in the data set.\n\n")
+            md.write(f"> Total of {len(data)} records in the data set.\n\n")
 
-        with open('../docs/data.json','wt',encoding='utf-8') as q:
-            q.write(json.dumps(data))
+            with open('../docs/data.json','wt',encoding='utf-8') as q:
+                q.write(json.dumps(data))
 
-        with open('../docs/data.jsonl','wt',encoding='utf-8') as q:
-            for i in data:
-                q.write(json.dumps(i))
-                q.write('\n')
-        writeCSV('../docs/data.csv',data)
+            with open('../docs/data.jsonl','wt',encoding='utf-8') as q:
+                for i in data:
+                    q.write(json.dumps(i))
+                    q.write('\n')
+            writeCSV('../docs/data.csv',data)
 
-        md.write(f"| Format  | Link | Size |\n")
-        md.write(f"|---------|------|------|\n")
-        md.write(f"| `json`  | [{URL}/data.json]({URL}/data.json)   | {get_human_readable_size(os.path.getsize('../docs/data.json'))}  |\n")
-        md.write(f"| `jsonl` | [{URL}/data.jsonl]({URL}/data.jsonl) | {get_human_readable_size(os.path.getsize('../docs/data.jsonl'))} |\n")
-        md.write(f"| `csv`   | [{URL}/data.csv]({URL}/data.csv)     | {get_human_readable_size(os.path.getsize('../docs/data.csv'))}  |\n")
+            md.write(f"| Format  | Link | Size |\n")
+            md.write(f"|---------|------|------|\n")
+            md.write(f"| `json`  | [{URL}/data.json]({URL}/data.json)   | {get_human_readable_size(os.path.getsize('../docs/data.json'))}  |\n")
+            md.write(f"| `jsonl` | [{URL}/data.jsonl]({URL}/data.jsonl) | {get_human_readable_size(os.path.getsize('../docs/data.jsonl'))} |\n")
+            md.write(f"| `csv`   | [{URL}/data.csv]({URL}/data.csv)     | {get_human_readable_size(os.path.getsize('../docs/data.csv'))}  |\n")
