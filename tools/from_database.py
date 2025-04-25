@@ -92,7 +92,12 @@ if __name__ == '__main__':
             md.write(f"> Total of {len(data)} records in the data set.\n\n")
 
             with open('../docs/data.json','wt',encoding='utf-8') as q:
-                q.write(json.dumps(data))
+                q.write({
+                    "data" : json.dumps(data),
+                    "next_page" : None,
+                    "records" : len(data),
+                    "total" : len(data)
+                })
 
             with open('../docs/data.jsonl','wt',encoding='utf-8') as q:
                 for i in data:
