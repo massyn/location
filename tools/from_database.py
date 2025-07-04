@@ -1,20 +1,6 @@
 import os
 import yaml
 import json
-import csv
-
-def writeCSV(file,data):
-    os.makedirs(os.path.dirname(file),exist_ok = True)
-    headers = list(data[0])
-    with open(file, 'wt', newline='') as csvfile:
-        csvwriter = csv.writer(csvfile)
-        csvwriter.writerow(headers)
-
-        for x in data:
-            row = []
-            for h in headers:
-                row.append(x.get(h))
-            csvwriter.writerow(row)
 
 def safe_get(lst, index, default=''):
     try:
@@ -91,22 +77,52 @@ if __name__ == '__main__':
 
             md.write(f"> Total of {len(data)} records in the data set.\n\n")
 
-            with open('../docs/data.json','wt',encoding='utf-8') as q:
-                q.write(json.dumps({
-                    "data" : data,
-                    "next_page" : None,
-                    "records" : len(data),
-                    "total" : len(data)
-                }))
+            # Pagination configuration
+            page_size = 100
+            total_records = len(data)
+            total_pages = (total_records + page_size - 1) // page_size  # Ceiling division
+            
+            # Generate paginated files
+            for page in range(total_pages):
+                start_idx = page * page_size
+                end_idx = min((page + 1) * page_size, total_records)
+                page_data = data[start_idx:end_idx]
+                
+                # Determine next page URL
+                next_page = None
+                if page + 1 < total_pages:
+                    if page + 1 == 1:
+                        next_page = f"{URL}/data1.json"
+                    else:
+                        next_page = f"{URL}/data{page + 1}.json"
+                
+                # Generate filename
+                if page == 0:
+                    filename = '../docs/data.json'
+                else:
+                    filename = f'../docs/data{page}.json'
+                
+                # Write paginated file
+                with open(filename, 'wt', encoding='utf-8') as q:
+                    q.write(json.dumps({
+                        "data": page_data,
+                        "next_page": next_page,
+                        "records": len(page_data),
+                        "total": total_records,
+                        "page": page,
+                        "total_pages": total_pages
+                    }))
 
-            with open('../docs/data.jsonl','wt',encoding='utf-8') as q:
-                for i in data:
-                    q.write(json.dumps(i))
-                    q.write('\n')
-            writeCSV('../docs/data.csv',data)
-
+            # Calculate total size of all paginated files
+            total_size = 0
+            for page in range(total_pages):
+                if page == 0:
+                    filename = '../docs/data.json'
+                else:
+                    filename = f'../docs/data{page}.json'
+                total_size += os.path.getsize(filename)
+            
+            md.write(f"The data is paginated with {page_size} records per page across {total_pages} pages.\n\n")
             md.write(f"| Format  | Link | Size |\n")
             md.write(f"|---------|------|------|\n")
-            md.write(f"| `json`  | [{URL}/data.json]({URL}/data.json)   | {get_human_readable_size(os.path.getsize('../docs/data.json'))}  |\n")
-            md.write(f"| `jsonl` | [{URL}/data.jsonl]({URL}/data.jsonl) | {get_human_readable_size(os.path.getsize('../docs/data.jsonl'))} |\n")
-            md.write(f"| `csv`   | [{URL}/data.csv]({URL}/data.csv)     | {get_human_readable_size(os.path.getsize('../docs/data.csv'))}  |\n")
+            md.write(f"| `json`  | [{URL}/data.json]({URL}/data.json)   | {get_human_readable_size(total_size)}  |\n")

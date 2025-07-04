@@ -1,17 +1,68 @@
-# Location Database
+# LocationDB - Global Location Database
 
-The location database is a community driven, open source location database that can be used in applications that require some sort of GPS-to-location lookup service.
+LocationDB is a comprehensive, open-source geospatial database providing hierarchical location data with precise coordinates for applications requiring geographic lookup services.
 
-The data is free and open to anyone.  It may not be fully accurate, and that's where you come in.  If you find a location is missing, you're welcome to contibute, and add your location to the database.
+Our database offers structured location information from continent level down to suburbs, making it ideal for geocoding, reverse geocoding, and location-based applications.
 
-## How to use the API
+## Key Features
 
-You can use the [location](https://github.com/massyn/location/blob/main/tools/location.py) Python class as a wrapper to retrieve the data.  When the data set becomes too large, this class will handle pagination and any updates to the API call.
+- **Hierarchical Structure**: Organized by continent → region → country → administrative divisions → cities → suburbs
+- **Precise Coordinates**: Latitude and longitude data for accurate positioning
+- **Comprehensive Coverage**: Global dataset with detailed location information
+- **RESTful API**: Easy integration with paginated JSON responses
+- **Open Source**: Free to use and community-driven development
+- **Unique Identifiers**: Persistent UUIDs for stable referencing
 
-## How to contribute
+## Quick Start
 
-The database is all in [Github](https://github.com/massyn/location).  Like all github projects, you're invited to make updates, and submit a pull request to have your updates applied.  Refer to the [contribute](contribute.md) page for more information.
+### Using the Python Client
 
-## Data files
+The recommended way to access LocationDB is through our Python client library:
 
-The data files are produced in a number of different formats.  Pick the one that matches your requirements the closest.
+```python
+from location import locationdb
+
+# Initialize the client
+db = locationdb()
+
+# Download all location data
+all_locations = db.download(all_pages=True)
+
+# Get just the first page (100 records)
+first_page = db.download(all_pages=False)
+
+# Get pagination information
+page_info = db.get_page_info()
+print(f"Total records: {page_info['total']}")
+```
+
+### Direct API Access
+
+You can also access the data directly via our REST API:
+
+```python
+import requests
+
+response = requests.get('https://location-db.pages.dev/data.json')
+data = response.json()
+
+print(f"Retrieved {data['records']} of {data['total']} records")
+```
+
+For complete API documentation, see our [API Reference](api.md).
+
+## Use Cases
+
+- **Geocoding Services**: Convert addresses to coordinates
+- **Location Validation**: Verify and standardize location data
+- **Geographic Applications**: Build location-aware software
+- **Data Analysis**: Spatial analysis and geographic research
+- **Mobile Applications**: Location-based features and services
+
+## Contributing
+
+LocationDB is community-driven and welcomes contributions. Whether you're adding new locations, improving existing data, or enhancing the codebase, your contributions help make this resource better for everyone.
+
+See our [Contribution Guide](contribute.md) for detailed instructions on how to get involved.
+
+## Data Quality & Coverage
